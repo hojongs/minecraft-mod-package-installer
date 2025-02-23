@@ -31,22 +31,23 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
-      - name: Get version
+      - name: Get DIST
         run: |
           chmod +x ./print-version.sh
-          echo "VERSION=$(./print-version.sh)" >> $GITHUB_ENV
+          version=$(./print-version.sh)
+          echo "DIST=v$version-$RUNNER_OS" >> $GITHUB_ENV
       - name: Push Git tag
         run: |
-          git tag "v$VERSION-$RUNNER_OS"
-          git push origin "v$VERSION-$RUNNER_OS"
+          git tag "$DIST"
+          git push origin "$DIST"
       - name: Build
         run: |
-          ./build.sh $VERSION
+          ./build.sh "$DIST"
       - name: Create GitHub Release and Upload Assets
         uses: softprops/action-gh-release@v1
         with:
-          name: "Release v${{ env.VERSION }}-${{ runner.os }}"
-          tag_name: "v${{ env.VERSION }}-${{ runner.os }}"
+          name: "Release ${{ env.DIST }}"
+          tag_name: "${{ env.DIST }}"
           files: dist/*
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -1,14 +1,14 @@
 #!/usr/bin/env bash
 
-# Default version if not provided
-version="${1:-SNAPSHOT}"
+# Default distribution if not provided
+distribution="${1:os-SNAPSHOT}"
 
-# Print the version to verify
-echo "Building version: $version"
+# Print the distribution to verify
+echo "Building distribution: $distribution"
 
-# Run pyinstaller to build the project with the version
+# Run pyinstaller to build the project with the distribution
 pyinstaller \
   --onefile \
   --add-data "mods/*.jar:mods/" \
-  --name="minecraft-mod-package-installer-macos-v$version" \
+  --name="minecraft-mod-package-installer-$distribution" \
   main.py
