@@ -16,7 +16,7 @@ def get_embedded_mods_dir():
     """PyInstaller 실행 파일 내부의 mods 디렉토리를 반환합니다."""
     if getattr(sys, 'frozen', False) and hasattr(sys, '_MEIPASS'):
         # PyInstaller 실행 파일 내부 경로
-        return getattr(sys, '_MEIPASS') / "mods"
+        return Path(getattr(sys, "_MEIPASS")) / "mods"
     else:
         # 개발 환경에서는 현재 디렉토리의 mods 폴더 사용
         return Path(__file__).parent / "mods"
