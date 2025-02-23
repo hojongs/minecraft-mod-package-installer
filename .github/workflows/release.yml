@@ -10,6 +10,8 @@ jobs:
     strategy:
       matrix:
         os: [macos-latest, windows-latest]
+      fail-fast: false
+    continue-on-error: true
     permissions:
       contents: write
     steps:
@@ -26,8 +28,7 @@ jobs:
       - name: Get version
         run: |
           chmod +x ./print-version.sh
-          version=$(./print-version.sh head=0 build=0)
-          echo "VERSION=$version" >> $GITHUB_ENV
+          echo "VERSION=$(./print-version.sh)" >> $GITHUB_ENV
       - name: Push Git tag
         run: |
           git tag "v$VERSION-$RUNNER_OS"
