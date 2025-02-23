@@ -24,5 +24,10 @@ if [[ "$head_from_version" == "$head_from_latest_tag" && "$yearweek_from_version
     version=$(./headver.sh head=0 build=$next_build)
 fi
 
-# Final version output
+regex='^[0-9]+\.[0-9]+\.[0-9]+(-(Windows|MacOS))?$'
+if [[ ! "$version" =~ $regex ]]; then
+  echo "Invalid version format: $version"
+  exit 1
+fi
+
 echo $version
