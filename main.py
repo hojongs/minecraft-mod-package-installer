@@ -25,13 +25,13 @@ def install_mods():
     """내장된 mods 디렉토리에서 Minecraft mods 디렉토리로 복사"""
     mods_dir = get_minecraft_mods_dir()
     embedded_mods_dir = get_embedded_mods_dir()
-    
+
     mods_dir.mkdir(parents=True, exist_ok=True)
 
     for jar_file in embedded_mods_dir.glob("*.jar"):
         dest_file = mods_dir / jar_file.name
         shutil.copy2(jar_file, dest_file)
-        print(f"Installed: {jar_file} -> {dest_file}")
+        print(f"Installed: {jar_file.name} -> {dest_file}")
 
 if __name__ == "__main__":
     install_mods()
