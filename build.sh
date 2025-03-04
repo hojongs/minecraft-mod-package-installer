@@ -15,12 +15,6 @@ if [[ "$distribution" == *Windows* ]]; then
     --windowed \
     --name=$filename \
     main.py
-
-  choco install zip
-  cd dist
-  zip -j "$filename.zip" "$filename"
-  rm -rf "$filename"
-  cd ..
 else
   filename="minecraft-mod-package-installer-$distribution"
   pyinstaller \
