@@ -7,7 +7,7 @@ distribution="${1:-os-SNAPSHOT}"
 
 echo "Building distribution: $distribution"
 
-opt='--onefile --add-data "mods/*.jar:mods/"'
+opt='--onefile --add-data "mods/*.jar:mods/" --windowed'
 if [[ "$distribution" == *Windows* ]]; then
   filename="minecraft-mod-package-installer-$distribution.exe"
   pyinstaller \
