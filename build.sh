@@ -23,4 +23,9 @@ else
     --name=$filename \
     --target-architecture universal2 \
     main.py
+
+  cd dist
+  zip -r "$filename.zip" "$filename"
+  rm -rf "$filename"
+  cd ..
 fi
