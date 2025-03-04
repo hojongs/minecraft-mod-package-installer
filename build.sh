@@ -17,9 +17,12 @@ else
 fi
 
 # Universal build for different platforms
+filename="minecraft-mod-package-installer-$distribution.$fileExt"
 pyinstaller \
   --onefile \
   --add-data "mods/*.jar:mods/" \
-  --name="minecraft-mod-package-installer-$distribution.$fileExt" \
+  --name=$filename \
   $opt \
   main.py
+
+zip -r "$filename.zip" "$filename"
