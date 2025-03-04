@@ -25,7 +25,8 @@ else
     --target-architecture universal2 \
     main.py
 
-  outdir=dist
-  zip -r "$outdir/$filename.zip" "$outdir/$filename"
-  rm "$outdir/$filename"
+  cd dist
+  zip -r "$filename.zip" "$filename"
+  rm -rf "$filename"
+  cd ..
 fi
