@@ -43,7 +43,7 @@ jobs:
           git push origin "$DIST"
       - name: Build
         run: |
-          ./build.sh "$DIST"
+          ./build.sh "$(echo $DIST | tr '.' '-')"
       - name: Create GitHub Release and Upload Assets
         uses: softprops/action-gh-release@v1
         with:
