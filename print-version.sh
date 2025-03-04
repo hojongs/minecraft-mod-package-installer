@@ -30,4 +30,4 @@ if [[ ! "$version" =~ $regex ]]; then
   exit 1
 fi
 
-echo $version
+echo $version | tr '.' '-'

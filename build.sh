@@ -22,17 +22,11 @@ if [[ "$distribution" == *Windows* ]]; then
   rm -rf "$filename"
   cd ..
 else
-  filename="minecraft-mod-package-installer-$distribution.app"
+  filename="minecraft-mod-package-installer-$distribution"
   pyinstaller \
     --onefile \
     --add-data "mods/*.jar:mods/" \
-    --windowed \
     --name=$filename \
     --target-architecture universal2 \
     main.py
-
-  cd dist
-  zip -r "$filename.zip" "$filename"
-  rm -rf "$filename"
-  cd ..
 fi
