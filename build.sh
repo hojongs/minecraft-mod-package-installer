@@ -12,7 +12,6 @@ if [[ "$distribution" == *Windows* ]]; then
   pyinstaller \
     --onefile \
     --add-data "mods/*.jar:mods/" \
-    --windowed \
     --name=$filename \
     main.py
 else
